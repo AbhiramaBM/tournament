@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Tournament Registration</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #1c1c1c, #333333);
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            background: rgba(44, 44, 44, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        .logo {
+            display: grid;
+            place-items: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 120px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .form-control {
+            border-radius: 10px;
+            background-color: #444;
+            color: #fff;
+            border: 1px solid #666;
+        }
+        .form-control:focus {
+            background-color: #555;
+            border-color: #ff4500;
+            box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
+        }
+        label {
+            font-weight: bold;
+            color: #ff4500;
+        }
+        .btn-custom {
+            background-color: #ff4500;
+            color: white;
+            border-radius: 10px;
+            font-weight: bold;
+            padding: 10px;
+        }
+        .btn-custom:hover {
+            background-color: #e63e00;
+        }
+        h2, h6 {
+            text-align: center;
+        }
+        .note {
+            color: #e63e00;
+            text-align: center;
+        }
+        .qr-code img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        @media (max-width: 768px) {
+            .container {
+                margin-top: 20px;
+                padding: 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+        input{
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="logo.jpg" style="background-color: #1c1c1c;" alt="Tournament Logo">
+        </div>
+        <h2>Free Fire Tournament Registration</h2>
+        <p class="note">*Note: Please click Submit after entering all information, then send it via WhatsApp and also payment screenshot*</p>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="squadName">Squad Name</label>
+                <input type="text" class="form-control" id="squadName" placeholder="Enter squad name" required>
+            </div>
+            <div class="form-group">
+                <label for="leaderName">Squad Leader Name</label>
+                <input type="text" class="form-control" id="leaderName" placeholder="Enter squad leader name" required>
+            </div>
+            <div class="form-group">
+                <label for="playerNames">Squad Player Names</label>
+                <input type="text" class="form-control" id="playerNames" placeholder="Enter player 1 name" required>
+                <input type="text" class="form-control mt-2" id="playerNames1" placeholder="Enter player 2 name" required>
+                <input type="text" class="form-control mt-2" id="playerNames2" placeholder="Enter player 3 name" required>
+                <input type="text" class="form-control mt-2" id="playerNames3" placeholder="Enter player 4 name" required>
+            </div>
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number</label>
+                <input type="tel" class="form-control" id="mobileNumber" placeholder="Enter your mobile number" required>
+            </div>
+            <button type="button" class="btn btn-custom btn-block" onclick="sendWhatsApp()">Submit</button>
+        </form>
+        <div class="qr-code">
+            <img src="scan.jpg" alt="QR Code">
+        </div>
+        <p class="note">**Note: Keep payment screenshot and send it with squad name to WhatsApp number +919108514434 same number **</p>
+    </div>
+    <script>
+        function sendWhatsApp() {
+            // Collect input values
+            const squadName = document.getElementById('squadName').value.trim();
+            const leaderName = document.getElementById('leaderName').value.trim();
+            const player1 = document.getElementById('playerNames').value.trim();
+            const player2 = document.getElementById('playerNames1').value.trim();
+            const player3 = document.getElementById('playerNames2').value.trim();
+            const player4 = document.getElementById('playerNames3').value.trim();
+            const mobileNumber = document.getElementById('mobileNumber').value.trim();
+
+            // Validate fields
+            if (!squadName || !leaderName || !player1 || !player2 || !player3 || !player4 || !mobileNumber) {
+                alert("Please fill out all required fields.");
+                return;
+            }
+
+            // Construct the WhatsApp message
+            const message = encodeURIComponent(
+                `Free Fire Tournament Registration:\n\n` +
+                `Squad Name: ${squadName}\n` +
+                `Squad Leader: ${leaderName}\n` +
+                `Players:\n` +
+                `1. ${player1}\n` +
+                `2. ${player2}\n` +
+                `3. ${player3}\n` +
+                `4. ${player4}\n\n` +
+                `Contact Number: ${mobileNumber}`
+            );
+
+            // Replace with the recipient's WhatsApp number
+            const recipientNumber = "+919108514434"; // Use international format, e.g., '91' for India
+            window.open(`https://wa.me/${recipientNumber}?text=${message}`, '_blank');
+        }
+    </script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
